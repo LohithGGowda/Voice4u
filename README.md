@@ -53,7 +53,33 @@ Our Git workflow uses a **protected branch model** to ensure stability and contr
 		               └─────────────v─────────────┘
 
 
+*************************************OR*************************************
 
+main (protected)  ──► Production-ready releases
+│
+├─ develop (protected)  ──► Integration branch for next release
+│       ▲
+│       │
+│   Merge PRs from feature/<feature-name>
+│
+├─ feature/<feature-name>  ──► New features
+│       │
+│       └─► PR to develop
+│
+├─ hotfix/<issue-name>  ──► Urgent fixes on main
+│       │
+│       └─► PR or direct merge to main
+│
+├─ release/<version>  ──► Pre-production stabilization
+│       │
+│       └─► Merge to main & develop
+│
+└─ contrib/<username>/<feature>  ──► Open-source community PRs
+        │
+        └─► PR to develop or feature branches
+
+		
+*************************************************************************
                       
 **Branch rules summary:**
 - `main`: Protected, only merges from `release` or `hotfix`.  
@@ -62,3 +88,5 @@ Our Git workflow uses a **protected branch model** to ensure stability and contr
 - `release/<version>`: Stabilizes code, merges into `main` and `develop`.  
 - `hotfix/<issue>`: Urgent fixes, merge to `main` and optionally `develop`.  
 - `contrib/<username>/<feature>`: External contributions via PRs to `develop` or feature branches.
+
+
